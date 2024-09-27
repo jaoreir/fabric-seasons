@@ -47,9 +47,11 @@ public abstract class ServerWorldMixin extends World implements StructureWorldAc
         FabricSeasons.setMeltable(blockPos);
     }
 
+
     @Inject(at = @At(value = "INVOKE", target = "Lnet/minecraft/block/Block;precipitationTick(Lnet/minecraft/block/BlockState;Lnet/minecraft/world/World;Lnet/minecraft/util/math/BlockPos;Lnet/minecraft/world/biome/Biome$Precipitation;)V"), method = "tickIceAndSnow", locals = LocalCapture.CAPTURE_FAILSOFT)
     public void setReplacedMeltable(boolean raining, BlockPos pos, CallbackInfo ci, BlockPos blockPos, BlockPos blockPos2, Biome biome, int k, Biome.Precipitation precipitation, BlockState blockState3) {
-        Meltable.replaceBlockOnSnow((ServerWorld) (Object) this, blockPos, biome);
+        if (FabricSeasons.CONFIG.shouldSnowReplaceVegetation())  
+            Meltable.replaceBlockOnSnow((ServerWorld) (Object) this, blockPos, biome);
     }
 
 }

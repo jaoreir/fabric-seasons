@@ -72,6 +72,10 @@ repositories {
         name = "Shedaniel"
         url = uri("https://maven.shedaniel.me/")
     }
+    maven {
+        name = "Nucleoid"
+        url = uri("https://maven.nucleoid.xyz/")
+    }
     mavenLocal()
 }
 
